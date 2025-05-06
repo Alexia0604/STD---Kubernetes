@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: chat-frontend
+  name: chat-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: chat-frontend
+  template:
+    metadata:
+      labels:
+        io.kompose.service: chat-frontend
+    spec:
+      containers:
+        - image: alexia0604/chat-frontend:latest
+          name: chat-frontend
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      restartPolicy: Always

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: chat-frontend
+  name: chat-frontend
+spec:
+  type: NodePort
+  ports:
+    - name: "90"
+      port: 90
+      targetPort: 3000
+      nodePort: 30090
+  selector:
+    io.kompose.service: chat-frontend

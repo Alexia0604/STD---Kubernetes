@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: payload-cms
+  name: payload-cms
+spec:
+  type: NodePort
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 3000
+      nodePort: 30080
+  selector:
+    io.kompose.service: payload-cms

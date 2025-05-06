@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: chat-backend
+  name: chat-backend
+spec:
+  replicas: 3  # Changed from 1 to 3
+  selector:
+    matchLabels:
+      io.kompose.service: chat-backend
+  template:
+    metadata:
+      labels:
+        io.kompose.service: chat-backend
+    spec:
+      containers:
+        - env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongodb:27017/chatdb
+          image: alexia0604/chat-backend:latest
+          name: chat-backend
+      restartPolicy: Always

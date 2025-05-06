@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: nginx
+  name: nginx
+spec:
+  type: NodePort
+  ports:
+    - name: "88"
+      port: 88
+      targetPort: 88
+      nodePort: 30088
+  selector:
+    io.kompose.service: nginx

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  ia-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"  # Portul intern al Node.js
+    networks:
+      - app-network
+
+  apache:
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"  # Apache rulează pe portul 5000
+    depends_on:
+      - ia-backend
+    networks:
+      - app-network
+
+  ia-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    depends_on:
+      - apache
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

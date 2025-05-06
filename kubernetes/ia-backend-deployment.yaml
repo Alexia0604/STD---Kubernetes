@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Tools\kompose\kompose.exe convert --out kubernetes/
+    kompose.version: 1.35.0 (9532ceef3)
+  labels:
+    io.kompose.service: ia-backend
+  name: ia-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: ia-backend
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Tools\kompose\kompose.exe convert --out kubernetes/
+        kompose.version: 1.35.0 (9532ceef3)
+      labels:
+        io.kompose.service: ia-backend
+    spec:
+      containers:
+        - image: alexia0604/ia-backend
+          name: ia-backend
+          ports:
+            - containerPort: 5001
+              protocol: TCP
+      restartPolicy: Always
