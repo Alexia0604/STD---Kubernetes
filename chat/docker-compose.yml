@@ -8,14 +8,22 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
   chat-backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     depends_on:
       - mongodb
+      - redis
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/chatdb
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
 
   chat-frontend:
     build:

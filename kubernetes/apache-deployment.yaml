@@ -21,7 +21,7 @@ spec:
         io.kompose.service: apache
     spec:
       containers:
-        - image: alexia0604/ia-apache
+        - image: alexia0604/ia-apache:latest
           name: apache
           ports:
             - containerPort: 5000

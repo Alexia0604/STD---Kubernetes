@@ -21,7 +21,7 @@ spec:
         io.kompose.service: ia-backend
     spec:
       containers:
-        - image: alexia0604/ia-backend
+        - image: alexia0604/ia-backend:latest
           name: ia-backend
           ports:
             - containerPort: 5001

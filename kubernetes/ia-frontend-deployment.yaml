@@ -21,7 +21,7 @@ spec:
         io.kompose.service: ia-frontend
     spec:
       containers:
-        - image: alexia0604/ia-frontend
+        - image: alexia0604/ia-frontend:latest
           name: ia-frontend
           ports:
             - containerPort: 80
